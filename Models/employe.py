@@ -6,7 +6,7 @@ class Employe(Personne):
                  codePostal, telephone, courriel):
         super().__init__(numeroIdentification, adresse, ville, province, codePostal, telephone, courriel)
         self.noEmployer = noEmployer
-        self.nAS = nAS
+        self.nAS = str(nAS)
         self.dateEmbauche = dateEmbauche
         self.dateArret = dateArret
 

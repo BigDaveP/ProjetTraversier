@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -1072,8 +1072,14 @@
      <property name="text">
       <string>Non</string>
      </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QLineEdit" name="numVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1081,6 +1087,9 @@
        <width>261</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_71">
@@ -1110,6 +1119,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="marqueVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1117,6 +1129,9 @@
        <width>261</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_73">
@@ -1133,6 +1148,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="modeleVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1140,6 +1158,9 @@
        <width>261</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_74">
@@ -1156,6 +1177,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="couleurVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1163,6 +1187,9 @@
        <width>261</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_75">
@@ -1179,6 +1206,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="anneeVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1187,8 +1217,14 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="readOnly">
+      <bool>false</bool>
+     </property>
     </widget>
     <widget class="QLineEdit" name="immatriculationVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1196,6 +1232,9 @@
        <width>261</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_76">
@@ -1225,6 +1264,9 @@
      </property>
     </widget>
     <widget class="QComboBox" name="typeVehicule">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -1260,7 +1302,7 @@
       <string>Date de naissance : </string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="sexeClient">
      <property name="geometry">
       <rect>
        <x>430</x>
@@ -1268,6 +1310,47 @@
        <width>261</width>
        <height>22</height>
       </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Homme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Femme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Autre</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPushButton" name="btnAjouterClient">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>560</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ajouter</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSupprimerClient">
+     <property name="geometry">
+      <rect>
+       <x>910</x>
+       <y>560</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Supprimer</string>
      </property>
     </widget>
    </widget>

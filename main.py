@@ -3,12 +3,18 @@ from PyQt5 import QtWidgets
 import sys
 from Models.employe import Employe
 from Models.traversier import Traversier
+from Models.client import Client
+from Models.traverse import Traverse
+from Models.vehicule import Vehicule
 import xml.etree.ElementTree as ET
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_Form):
     unTraversier = Traversier("", "", "", "", "", [])
     unEmploye = Employe("", "", "", "", "", "", "", "", "", "", "")
+    unClient = Client("", "", "", "", "", "", "", "", "", "", "")
+    uneTraverse = Traverse("", "", "", "", [], [])
+    unVehicule = Vehicule("", "", "", "", "", "", "")
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -51,7 +57,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
         self.btnAjouterEmployer.clicked.connect(self.addEmployee)
         self.sauvegarder.clicked.connect(self.save)
         self.btnAjouterEmployer.clicked.connect(lambda: self.tabWidget.setCurrentIndex(1))
-
+        self.vehiculeOui.clicked.connect(self.enableInput)
+        self.vehiculeNon.clicked.connect(self.disableInput)
+        self.btnAjouterClient.clicked.connect(self.addClient)
     def addTraversier(self):
         if self.unTraversier.listeEmploye:
             print("Ce traversier contient des employés")
@@ -71,6 +79,45 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
         listWidget1.addItem(self.unEmploye.nom)
         listWidget2 = self.listEmployeTraversier
         listWidget2.addItem(self.unEmploye.nom)
+
+    def addClient(self):
+        if self.vehiculeOui.isChecked():
+            self.unVehicule = Vehicule(self.numVehicule.text(), self.marqueVehicule.text(),
+                                       self.modeleVehicule.text(), self.couleurVehicule.text(),
+                                       self.anneeVehicule.text(), self.immatriculationVehicule.text(),
+                                       self.typeVehicule.text())
+            self.unClient = Client(self.numClient.text(), self.nomClient.text(), self.adresseClient.text(),
+                                   self.villeClient.text(), self.provinceClient.text(), self.codePostalClient.text(),
+                                   self.telephoneClient.text(), self.courrielClient.text(), self.sexeClient.text(),
+                                   self.dateNaissanceClient.text(), self.unVehicule)
+            self.uneTraverse.ajouterClient(self.unClient)
+            self.uneTraverse.ajouterVehicule(self.unVehicule)
+
+        else:
+            self.unClient = Client(self.numClient.text(), self.nomClient.text(), self.adresseClient.text(),
+                                   self.villeClient.text(), self.provinceClient.text(), self.codePostalClient.text(),
+                                   self.telephoneClient.text(), self.courrielClient.text(), self.sexeClient.text(),
+                                   self.dateNaissanceClient.text(), "")
+            self.uneTraverse.ajouterClient(self.unClient)
+
+
+    def enableInput(self):
+        self.numVehicule.setEnabled(True)
+        self.marqueVehicule.setEnabled(True)
+        self.modeleVehicule.setEnabled(True)
+        self.couleurVehicule.setEnabled(True)
+        self.anneeVehicule.setEnabled(True)
+        self.immatriculationVehicule.setEnabled(True)
+        self.typeVehicule.setEnabled(True)
+
+    def disableInput(self):
+        self.numVehicule.setEnabled(False)
+        self.marqueVehicule.setEnabled(False)
+        self.modeleVehicule.setEnabled(False)
+        self.couleurVehicule.setEnabled(False)
+        self.anneeVehicule.setEnabled(False)
+        self.immatriculationVehicule.setEnabled(False)
+        self.typeVehicule.setEnabled(False)
 
     def save(self):
         root = ET.Element("Traversier")

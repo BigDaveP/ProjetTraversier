@@ -1,35 +1,26 @@
-<Traversier>
-    <nom>fwa</nom>
-    <capaciteVehicule>ghrd</capaciteVehicule>
-    <capacitePersonne>hgeshrd</capacitePersonne>
-    <anneeFabrication>hrd</anneeFabrication>
-    <dateMiseService>hrd</dateMiseService>
+<Traverse>
+    <noTraverse>fwawfa</noTraverse>
+    <date>2000-01-01 00:00</date>
+    <villeDepart>fwaawf</villeDepart>
+    <employeInscription>gwag</employeInscription>
+    <nomTraversier>fwawf</nomTraversier>
+    <capaciteVehicule>fwafaw</capaciteVehicule>
+    <capacitePersonne>fwafw</capacitePersonne>
+    <anneeFabrication>fwafaw</anneeFabrication>
+    <dateMiseEnService>fwafaw</dateMiseEnService>
     <listeEmploye>
         <employe>
-            <noEmployer>grsdrgsd</noEmployer>
-            <nAS>hdrdrh</nAS>
+            <noEmployer>gwag</noEmployer>
+            <nAS>wga</nAS>
             <dateEmbauche>2000-01-01</dateEmbauche>
             <dateArret>2000-01-01</dateArret>
-            <nom>hrdrh</nom>
-            <adresse>hrdrhd</adresse>
-            <ville>hrdhr</ville>
-            <province>hrdhr</province>
-            <codePostal>rhddrh</codePostal>
-            <telephone>hrddrh</telephone>
-            <courriel>rhddrh</courriel>
-        </employe>
-        <employe>
-            <noEmployer>gesge</noEmployer>
-            <nAS>hrdhdr</nAS>
-            <dateEmbauche>2000-01-01</dateEmbauche>
-            <dateArret>2000-01-01</dateArret>
-            <nom>geshrd</nom>
-            <adresse>hrdj</adresse>
-            <ville>tyf</ville>
-            <province>jtrfj</province>
-            <codePostal>tjfj</codePostal>
-            <telephone>kygky</telephone>
-            <courriel>hrdthdr</courriel>
+            <nom>gwag</nom>
+            <adresse>aw</adresse>
+            <ville>wga</ville>
+            <province>wga</province>
+            <codePostal>awg</codePostal>
+            <telephone>wga</telephone>
+            <courriel>gaw</courriel>
         </employe>
     </listeEmploye>
-</Traversier>
+</Traverse>

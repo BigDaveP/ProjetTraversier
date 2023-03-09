@@ -176,9 +176,9 @@ class Ui_Form(object):
         self.numTraverse = QtWidgets.QLineEdit(self.tab_3)
         self.numTraverse.setGeometry(QtCore.QRect(30, 50, 221, 21))
         self.numTraverse.setObjectName("numTraverse")
-        self.pushButton_3 = QtWidgets.QPushButton(self.tab_3)
-        self.pushButton_3.setGeometry(QtCore.QRect(30, 250, 101, 41))
-        self.pushButton_3.setObjectName("pushButton_3")
+        self.btnAjouterTraverse = QtWidgets.QPushButton(self.tab_3)
+        self.btnAjouterTraverse.setGeometry(QtCore.QRect(30, 250, 101, 41))
+        self.btnAjouterTraverse.setObjectName("btnAjouterTraverse")
         self.dateTraverse = QtWidgets.QDateTimeEdit(self.tab_3)
         self.dateTraverse.setGeometry(QtCore.QRect(30, 100, 221, 22))
         self.dateTraverse.setObjectName("dateTraverse")
@@ -375,7 +375,7 @@ class Ui_Form(object):
         self.sauvegarder.setObjectName("sauvegarder")
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -412,7 +412,7 @@ class Ui_Form(object):
         self.label_21.setText(_translate("Form", "Employé qui s\'occupe de l\'inscription : "))
         self.label_38.setText(_translate("Form", "Numéro de la traverse :"))
         self.label_24.setText(_translate("Form", "Ville de départ :"))
-        self.pushButton_3.setText(_translate("Form", "Ajouter"))
+        self.btnAjouterTraverse.setText(_translate("Form", "Ajouter"))
         self.label_19.setText(_translate("Form", "Liste des véhicules :"))
         self.label_22.setText(_translate("Form", "Liste des clients :"))
         self.label_23.setText(_translate("Form", "Client propriétaire du véhicule : "))

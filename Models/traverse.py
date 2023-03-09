@@ -1,11 +1,11 @@
 
 class Traverse:
-        def __init__(self, noTraverse, dateHeure, villeDepart, employeInscription, listeVehecule, listeClient):
+        def __init__(self, noTraverse, dateHeure, villeDepart, employeInscription, listeVehicule, listeClient):
             self.noTraverse = noTraverse
             self.dateHeure = dateHeure
             self.villeDepart = villeDepart
             self.employeInscription = employeInscription
-            self.listeVehecule = listeVehecule
+            self.listeVehicule = listeVehicule
             self.listeClient = listeClient
 
         def __str__(self):
@@ -20,7 +20,7 @@ class Traverse:
 
         def calculerRevenueTraverse(self):
             revenue = 0
-            for vehicule in self.listeVehecule:
+            for vehicule in self.listeVehicule:
                 revenue += vehicule.calculerRevenueVehicule()
             return revenue
 
@@ -31,7 +31,7 @@ class Traverse:
             self.listeClient.remove(client)
 
         def ajouterVehicule(self, vehicule):
-            self.listeVehecule.append(vehicule)
+            self.listeVehicule.append(vehicule)
 
         def supprimerVehicule(self, vehicule):
-            self.listeVehecule.remove(vehicule)
+            self.listeVehicule.remove(vehicule)

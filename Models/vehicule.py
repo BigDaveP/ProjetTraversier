@@ -1,12 +1,12 @@
 
 class Vehicule:
-    def __init__(self, noIdentification, marque, modele, couleur, annee, immitraculation, typeDeVehicule):
+    def __init__(self, noIdentification, marque, modele, couleur, annee, immatriculation, typeDeVehicule):
         self.noIdentification = noIdentification
         self.marque = marque
         self.modele = modele
         self.couleur = couleur
         self.annee = annee
-        self.immitraculation = immitraculation
+        self.immatriculation = immatriculation
         self.typeDeVehicule = typeDeVehicule
 
     def __str__(self):

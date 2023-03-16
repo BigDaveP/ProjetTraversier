@@ -1,6 +1,5 @@
 
 from Models.personne import Personne
-
 class Client(Personne):
     def __init__(self, numeroIdentification, nom, adresse, ville, province, codePostal, telephone, courriel, sexe, dateNaissance, vehicule):
         super().__init__(nom, adresse, ville, province, codePostal, telephone, courriel)

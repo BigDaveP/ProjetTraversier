@@ -8,7 +8,7 @@ from Models.traversier import Traversier
 from Models.client import Client
 from Models.traverse import Traverse
 from Models.vehicule import Vehicule
-
+from Models.type import Type
 import xml.etree.ElementTree as ET
 
 
@@ -18,6 +18,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
     unClient = Client("", "", "", "", "", "", "", "", "", "", "")
     uneTraverse = Traverse("", "", "", "", [], [])
     unVehicule = Vehicule("", "", "", "", "", "", "")
+    unType = Type("", "", "")
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -36,59 +37,79 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
 
             if root.find('traversier') is not None:
                 traversier = root.find('traversier')
-                self.unTraversier = Traversier(traversier.find('nomTraversier').text,
-                                               traversier.find('capaciteVehicule').text,
-                                               traversier.find('capacitePersonne').text,
-                                               traversier.find('anneeFabrication').text,
+                self.unTraversier = Traversier(traversier.find('nomTraversier').text, traversier.find('capaciteVehicule').text,
+                                               traversier.find('capacitePersonne').text, traversier.find('anneeFabrication').text,
                                                traversier.find('dateMiseEnService').text, [])
+
+                if traversier.find('listeEmploye') is not None:
+                    # on ajoute les employés du traversier
+                    listWidget1 = self.listeEmploye
+                    listWidget2 = self.listEmployeTraversier
+                    listeEmployeTraversier = traversier.find('listeEmploye')
+                    for employe in listeEmployeTraversier.findall('employe'):
+                        self.unEmploye = Employe(employe.find('noEmployer').text, employe.find('nAS').text,
+                                                 employe.find('dateEmbauche').text, employe.find('dateArret').text,
+                                                 employe.find('nom').text, employe.find('adresse').text,
+                                                 employe.find('ville').text, employe.find('province').text,
+                                                 employe.find('codePostal').text, employe.find('telephone').text,
+                                                 employe.find('courriel').text)
+                        self.unTraversier.ajouterEmploye(self.unEmploye)
+                        listWidget1.addItem(self.unEmploye.nom)
+                        listWidget2.addItem(self.unEmploye.nom)
+                        self.employeInscptionTraverse.addItem(self.unEmploye.nom)
             else:
                 print("Erreur de lecture du fichier XML")
 
-            # on ajoute les employés du traversier
-            listWidget1 = self.listeEmploye
-            listWidget2 = self.listEmployeTraversier
-            for employe in root.findall('.//employe'):
-                self.unEmploye = Employe(employe.find('noEmployer').text, employe.find('nAS').text,
-                                         employe.find('dateEmbauche').text, employe.find('dateArret').text,
-                                         employe.find('nom').text, employe.find('adresse').text,
-                                         employe.find('ville').text, employe.find('province').text,
-                                         employe.find('codePostal').text, employe.find('telephone').text,
-                                         employe.find('courriel').text)
-                self.unTraversier.ajouterEmploye(self.unEmploye)
-                listWidget1.addItem(self.unEmploye.nom)
-                listWidget2.addItem(self.unEmploye.nom)
-                self.employeInscptionTraverse.addItem(self.unEmploye.nom)
 
-            # on ajoute les clients du traversier
-            listWidget1 = self.listClients
-            listWidget2 = self.listClientTraverse
-            listeClient = root.find('listeClient')
-            for client in listeClient.findall('client'):
-                self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
-                                       client.find('adresse').text, client.find('ville').text,
-                                       client.find('province').text, client.find('codePostal').text,
-                                       client.find('telephone').text, client.find('courriel').text,
-                                       client.find('sexe').text, client.find('dateNaissance').text, [])
-                self.uneTraverse.ajouterClient(self.unClient)
-                elementrow = (self.unClient.numeroIdentification + " | " + self.unClient.nom)
-                listWidget1.addItem(elementrow)
-                listWidget2.addItem(elementrow)
-                if client.find('vehicule') is not None:
-                    self.unVehicule = Vehicule(client.find('vehicule').find('noIdentification').text,
-                                               client.find('vehicule').find('marque').text,
-                                               client.find('vehicule').find('modele').text,
-                                               client.find('vehicule').find('annee').text,
-                                               client.find('vehicule').find('couleur').text,
-                                               client.find('vehicule').find('immatriculation').text,
-                                               client.find('vehicule').find('type').text)
-                    self.uneTraverse.ajouterVehicule(self.unVehicule)
+
+            if root.find('listeClient') is not None:
+                listeClientTraverse = root.find('listeClient')
+                # on ajoute les clients du traversier
+                listWidget1 = self.listClients
+                listWidget2 = self.listClientTraverse
+                listWidget3 = self.listVehiculeTraverse
+                for client in listeClientTraverse.findall('client'):
+                    if client.find('vehicule') is not None:
+                        vehicule = client.find('vehicule')
+                        self.unVehicule = Vehicule(vehicule.find('noIdentification').text,
+                                                   vehicule.find('marque').text,
+                                                   vehicule.find('modele').text,
+                                                   vehicule.find('annee').text,
+                                                   vehicule.find('couleur').text,
+                                                   vehicule.find('immatriculation').text,
+                                                   vehicule.find('type').text)
+                        self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
+                                               client.find('adresse').text, client.find('ville').text,
+                                               client.find('province').text, client.find('codePostal').text,
+                                               client.find('telephone').text, client.find('courriel').text,
+                                               client.find('sexe').text, client.find('dateNaissance').text, self.unVehicule)
+                        self.uneTraverse.ajouterClient(self.unClient)
+                        listWidget1.addItem(self.unClient.nom)
+                        listWidget2.addItem(self.unClient.nom)
+                        self.uneTraverse.ajouterVehicule(self.unVehicule)
+                        listWidget3.addItem(self.unVehicule.noIdentification)
+                    else:
+                        self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
+                                               client.find('adresse').text, client.find('ville').text,
+                                               client.find('province').text, client.find('codePostal').text,
+                                               client.find('telephone').text, client.find('courriel').text,
+                                               client.find('sexe').text, client.find('dateNaissance').text, [])
+                        self.uneTraverse.ajouterClient(self.unClient)
+                        listWidget1.addItem(self.unClient.nom)
+                        listWidget2.addItem(self.unClient.nom)
+
+            if root.find("listeType") is not None:
+                listeType = root.find("listeType")
+                for type in listeType.findall("type"):
+                    self.unType = Type(type.find("nomType").text, type.find("nombreRoues").text, type.find("tarif").text)
+                    self.typeVehicule.addItem(type.find("nomType").text)
 
             self.numTraverse.setText(self.uneTraverse.noTraverse)
             self.dateTraverse.setDate(date(int(self.uneTraverse.dateHeure[0:4]), int(self.uneTraverse.dateHeure[5:7]),
                                            int(self.uneTraverse.dateHeure[8:10])))
             self.villeDepartTraverse.setText(self.uneTraverse.villeDepart)
             self.employeInscptionTraverse.setCurrentText(self.uneTraverse.employeInscription)
-            print(self.unTraversier.nom)
+
             self.nomTraversier.setText(self.unTraversier.nom)
             self.capaciteVehiculeTraversier.setText(self.unTraversier.capaciteVehicule)
             self.capacitePersonneTraversier.setText(self.unTraversier.capacitePersonne)
@@ -96,6 +117,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             self.dateMiseServiceTraverse.setText(self.unTraversier.dateMiseService)
         except:
             print("Erreur lors de la lecture du fichier traversier.xml")
+
 
         ### Actions de l'application ###
 
@@ -109,23 +131,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
         self.btnAjouterClient.clicked.connect(self.addClient)
         self.btnAjouterTraverse.clicked.connect(self.addTraverse)
         self.btnSupprimerEmployer.clicked.connect(self.deleteEmployee)
-        self.listClients.itemClicked.connect(self.listClientCurrentRow)
 
-    def listClientCurrentRow(self):
-        self.currentRow = self.listClients.currentRow()
-        self.currentItem = self.listClients.currentItem()
-        client = self.uneTraverse.trouverClient(self.currentItem.text().split(" | ")[0])
-        self.numClient.setText(client.numeroIdentification)
-        self.nomClient.setText(client.nom)
-        self.adresseClient.setText(client.adresse)
-        self.villeClient.setText(client.ville)
-        self.provinceClient.setText(client.province)
-        self.codePostalClient.setText(client.codePostal)
-        self.telephoneClient.setText(client.telephone)
-        self.courrielClient.setText(client.courriel)
-        self.sexeClient.setCurrentText(client.sexe)
-        self.dateNaissanceClient.setText(client.dateNaissance)
-        print(client.vehicule)
 
     def addTraversier(self):
         if self.unTraversier.listeEmploye:
@@ -170,10 +176,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             self.uneTraverse.ajouterClient(self.unClient)
             self.uneTraverse.ajouterVehicule(self.unVehicule)
             listWidget3 = self.listClients
-            elementRow = (self.unClient.numeroIdentification + " | " + self.unClient.nom)
-            listWidget3.addItem(elementRow)
+            listWidget3.addItem(self.unClient.nom)
             listWidget4 = self.listClientTraverse
-            listWidget4.addItem(elementRow)
+            listWidget4.addItem(self.unClient.nom)
             listWidget5 = self.listVehiculeTraverse
             listWidget5.addItem(self.unVehicule.immatriculation)
 
@@ -184,11 +189,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
                                    self.sexeClient.currentText(),
                                    self.dateNaissanceClient.text(), None)
             self.uneTraverse.ajouterClient(self.unClient)
-            elementRow = (self.unClient.numeroIdentification + " | " + self.unClient.nom)
             listWidget3 = self.listClients
-            listWidget3.addItem(elementRow)
+            listWidget3.addItem(self.unClient.nom)
             listWidget4 = self.listClientTraverse
-            listWidget4.addItem(elementRow)
+            listWidget4.addItem(self.unClient.nom)
+
+
 
     def addTraverse(self):
         self.uneTraverse = Traverse(self.numTraverse.text(), self.dateTraverse.text(),
@@ -258,10 +264,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             sexe.text = c.sexe
             dateNaissance = ET.SubElement(client, "dateNaissance")
             dateNaissance.text = c.dateNaissance
-            if c.vehicule is not None:
+            try:
                 vehicule = ET.SubElement(client, "vehicule")
-                noIdentification = ET.SubElement(vehicule, "noIdentification")
-                noIdentification.text = c.vehicule.noIdentification
+                numIdentification = ET.SubElement(vehicule, "numIdentification")
+                numIdentification.text = c.vehicule.noIdentification
                 marque = ET.SubElement(vehicule, "marque")
                 marque.text = c.vehicule.marque
                 modele = ET.SubElement(vehicule, "modele")
@@ -273,7 +279,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
                 immatriculation = ET.SubElement(vehicule, "immatriculation")
                 immatriculation.text = c.vehicule.immatriculation
                 type = ET.SubElement(vehicule, "type")
-                type.text = c.vehicule.typeDeVehicule
+                type.text = c.vehicule.type
+            except AttributeError:
+                pass
         listeEmploye = ET.SubElement(subElement, "listeEmploye")
         for e in self.unTraversier.listeEmploye:
             employe = ET.SubElement(listeEmploye, "employe")
@@ -299,6 +307,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             telephone.text = e.telephone
             courriel = ET.SubElement(employe, "courriel")
             courriel.text = e.courriel
+
 
         ET.indent(root, space="    ")
         tree.write("traversier.xml")

@@ -9,8 +9,9 @@ class Vehicule:
         self.immatriculation = immatriculation
         self.typeDeVehicule = typeDeVehicule
 
+
     def __str__(self):
-        return "Vehicule [noIdentification=" + self.noIdentification + ", marque=" + self.marque + ", modele=" + self.modele + ", couleur=" + self.couleur + ", annee=" + self.annee + ", immitraculation=" + self.immitraculation + ", typeDeVehicule=" + self.typeDeVehicule + "]"
+        return "Vehicule [noIdentification=" + self.noIdentification + ", marque=" + self.marque + ", modele=" + self.modele + ", couleur=" + self.couleur + ", annee=" + self.annee + ", immitraculation=" + self.immatriculation + ", typeDeVehicule=" + self.typeDeVehicule + "]"
 
     def getHashCode(self):
         return self.noIdentification

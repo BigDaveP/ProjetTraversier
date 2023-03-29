@@ -1,104 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
 <Traverse>
-    <noTraverse>fwaawf</noTraverse>
-    <date>2000-01-01 00:00</date>
-    <villeDepart>hrgddrhdhr</villeDepart>
-    <employeInscription>hrddh</employeInscription>
+    <noTraverse>TR-01</noTraverse>
+    <date>2023-04-01 08:30</date>
+    <villeDepart>Montréal</villeDepart>
+    <employeInscription>Lucie Tremblay</employeInscription>
     <traversier>
-        <nomTraversier>faw</nomTraversier>
-        <capaciteVehicule>gser</capaciteVehicule>
-        <capacitePersonne>ges</capacitePersonne>
-        <anneeFabrication>gesges</anneeFabrication>
-        <dateMiseEnService>gesges</dateMiseEnService>
+        <nomTraversier>Le Saint-Laurent</nomTraversier>
+        <capaciteVehicule>200</capaciteVehicule>
+        <capacitePersonne>1000</capacitePersonne>
+        <anneeFabrication>2012</anneeFabrication>
+        <dateMiseEnService>2013-01-15</dateMiseEnService>
         <listeEmploye>
             <employe>
-                <noEmployer>gesge</noEmployer>
-                <nAS>kygkgy</nAS>
-                <dateEmbauche>2000-01-01</dateEmbauche>
-                <dateArret>2000-01-01</dateArret>
-                <nom>hrddh</nom>
-                <adresse>hjtfj</adresse>
-                <ville>jtfjft</ville>
-                <province>jyg</province>
-                <codePostal>yjgyjg</codePostal>
-                <telephone>kygyk</telephone>
-                <courriel>kygkgy</courriel>
+                <noEmployer>EMPL-01</noEmployer>
+                <nAS>196808156</nAS>
+                <dateEmbauche>2010-06-01</dateEmbauche>
+                <dateArret>2023-04-01</dateArret>
+                <nom>Lucie Tremblay</nom>
+                <adresse>123 rue Principale</adresse>
+                <ville>Montréal</ville>
+                <province>Québec</province>
+                <codePostal>H1X 2B3</codePostal>
+                <telephone>514-555-1234</telephone>
+                <courriel>lucie.tremblay@example.com</courriel>
             </employe>
             <employe>
-                <noEmployer>gesge</noEmployer>
-                <nAS>kygkgy</nAS>
-                <dateEmbauche>2000-01-01</dateEmbauche>
-                <dateArret>2000-01-01</dateArret>
-                <nom>hrddh</nom>
-                <adresse>hjtfj</adresse>
-                <ville>jtfjft</ville>
-                <province>jyg</province>
-                <codePostal>yjgyjg</codePostal>
-                <telephone>kygyk</telephone>
-                <courriel>kygkgy</courriel>
+                <noEmployer>EMPL-02</noEmployer>
+                <nAS>196712042</nAS>
+                <dateEmbauche>2011-01-15</dateEmbauche>
+                <dateArret>2023-04-01</dateArret>
+                <nom>Robert Dupont</nom>
+                <adresse>456 rue Sainte-Catherine</adresse>
+                <ville>Montréal</ville>
+                <province>Québec</province>
+                <codePostal>H2L 2C4</codePostal>
+                <telephone>514-555-5678</telephone>
+                <courriel>robert.dupont@example.com</courriel>
             </employe>
             <employe>
-                <noEmployer>gesge</noEmployer>
-                <nAS>kygkgy</nAS>
-                <dateEmbauche>2000-01-01</dateEmbauche>
-                <dateArret>2000-01-01</dateArret>
-                <nom>hrddh</nom>
-                <adresse>hjtfj</adresse>
-                <ville>jtfjft</ville>
-                <province>jyg</province>
-                <codePostal>yjgyjg</codePostal>
-                <telephone>kygyk</telephone>
-                <courriel>kygkgy</courriel>
+                <noEmployer>EMPL-03</noEmployer>
+                <nAS>196908312</nAS>
+                <dateEmbauche>2015-05-01</dateEmbauche>
+                <dateArret>2023-04-01</dateArret>
+                <nom>Isabelle Gagnon</nom>
+                <adresse>789 avenue des Pins</adresse>
+                <ville>Montréal</ville>
+                <province>Québec</province>
+                <codePostal>H3A 1A9</codePostal>
+                <telephone>514-555-9012</telephone>
+                <courriel>isabelle.gagnon@example.com</courriel>
             </employe>
             <employe>
-                <noEmployer>gesge</noEmployer>
-                <nAS>kygkgy</nAS>
-                <dateEmbauche>2000-01-01</dateEmbauche>
-                <dateArret>2000-01-01</dateArret>
-                <nom>hrddh</nom>
-                <adresse>hjtfj</adresse>
-                <ville>jtfjft</ville>
-                <province>jyg</province>
-                <codePostal>yjgyjg</codePostal>
-                <telephone>kygyk</telephone>
-                <courriel>kygkgy</courriel>
+                <noEmployer>EMPL-04</noEmployer>
+                <nAS>197312032</nAS>
+                <dateEmbauche>2019-09-01</dateEmbauche>
+                <dateArret>2023-04-01</dateArret>
+                <nom>David Martin</nom>
+                <adresse>1010 rue de la Montagne</adresse>
+                <ville>Montréal</ville>
+                <province>Québec</province>
+                <codePostal>H3A 1A9</codePostal>
+                <telephone>551-551-5511</telephone>
+                <courriel>davidmartin@example.com</courriel>
             </employe>
         </listeEmploye>
     </traversier>
     <listeClient>
         <client>
-            <numIdentification>fwawfa</numIdentification>
-            <nom>ges</nom>
-            <adresse>ges</adresse>
-            <ville>ges</ville>
-            <province>ges</province>
-            <codePostal>ges</codePostal>
-            <telephone>egs</telephone>
-            <courriel>ges</courriel>
-            <sexe>Homme</sexe>
-            <dateNaissance>gse</dateNaissance>
+            <numIdentification>CL001</numIdentification>
+            <nom>Tremblay</nom>
+            <adresse>123 rue Principale</adresse>
+            <ville>Montreal</ville>
+            <province>Quebec</province>
+            <codePostal>H1A 1A1</codePostal>
+            <telephone>514-123-4567</telephone>
+            <courriel>tremblay@gmail.com</courriel>
+            <sexe>M</sexe>
+            <dateNaissance>1980-01-01</dateNaissance>
             <vehicule>
-                <numIdentification />
+                <numIdentification>VEH001</numIdentification>
+                <marque>Toyota</marque>
+                <modele>Corolla</modele>
+                <couleur>2019</couleur>
+                <annee>Blanc</annee>
+                <immatriculation>ABC 123</immatriculation>
+                <type>Moto</type>
             </vehicule>
         </client>
         <client>
-            <numIdentification>fwawfa</numIdentification>
-            <nom>ges</nom>
-            <adresse>ges</adresse>
-            <ville>ges</ville>
-            <province>ges</province>
-            <codePostal>ges</codePostal>
-            <telephone>egs</telephone>
-            <courriel>ges</courriel>
-            <sexe>Homme</sexe>
-            <dateNaissance>gse</dateNaissance>
+            <numIdentification>CL002</numIdentification>
+            <nom>Gagnon</nom>
+            <adresse>456 rue Principale</adresse>
+            <ville>Quebec</ville>
+            <province>Quebec</province>
+            <codePostal>G1B 2B2</codePostal>
+            <telephone>418-234-5678</telephone>
+            <courriel>gagnon@hotmail.com</courriel>
+            <sexe>F</sexe>
+            <dateNaissance>1990-05-15</dateNaissance>
             <vehicule>
-                <numIdentification>oui</numIdentification>
-                <marque>hrd</marque>
-                <modele>egshr</modele>
-                <couleur>hsegseh</couleur>
-                <annee>ghse</annee>
-                <immatriculation>hesehs</immatriculation>
-                <type />
+                <numIdentification>VEH002</numIdentification>
+                <marque>Ford</marque>
+                <modele>F-150</modele>
+                <couleur>2022</couleur>
+                <annee>Noir</annee>
+                <immatriculation>DEF 456</immatriculation>
+                <type>Voiture</type>
+            </vehicule>
+        </client>
+        <client>
+            <numIdentification>CL003</numIdentification>
+            <nom>Bouchard</nom>
+            <adresse>789 rue Principale</adresse>
+            <ville>Gatineau</ville>
+            <province>Quebec</province>
+            <codePostal>J8T 1C1</codePostal>
+            <telephone>819-345-6789</telephone>
+            <courriel>bouchard@yahoo.com</courriel>
+            <sexe>M</sexe>
+            <dateNaissance>1975-09-30</dateNaissance>
+            <vehicule>
+                <numIdentification>VEH003</numIdentification>
+                <marque>Honda</marque>
+                <modele>Civic</modele>
+                <couleur>2018</couleur>
+                <annee>Rouge</annee>
+                <immatriculation>GHI 789</immatriculation>
+                <type>Camion</type>
             </vehicule>
         </client>
     </listeClient>

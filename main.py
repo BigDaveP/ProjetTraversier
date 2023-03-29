@@ -1,5 +1,7 @@
 from datetime import date
 
+from PyQt5.QtWidgets import QMessageBox
+
 from template import Ui_Form
 from PyQt5 import QtWidgets
 import sys
@@ -18,9 +20,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
     unClient = Client("", "", "", "", "", "", "", "", "", "", "")
     uneTraverse = Traverse("", "", "", "", [], [])
     unVehicule = Vehicule("", "", "", "", "", "", "")
-    unType = Type("", "", "")
 
     def __init__(self):
+        global listType
         super(MainWindow, self).__init__()
         self.setupUi(self)
 
@@ -69,40 +71,45 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
                 listWidget2 = self.listClientTraverse
                 listWidget3 = self.listVehiculeTraverse
                 for client in listeClientTraverse.findall('client'):
-                    if client.find('vehicule') is not None:
                         vehicule = client.find('vehicule')
-                        self.unVehicule = Vehicule(vehicule.find('noIdentification').text,
-                                                   vehicule.find('marque').text,
-                                                   vehicule.find('modele').text,
-                                                   vehicule.find('annee').text,
-                                                   vehicule.find('couleur').text,
-                                                   vehicule.find('immatriculation').text,
-                                                   vehicule.find('type').text)
-                        self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
-                                               client.find('adresse').text, client.find('ville').text,
-                                               client.find('province').text, client.find('codePostal').text,
-                                               client.find('telephone').text, client.find('courriel').text,
-                                               client.find('sexe').text, client.find('dateNaissance').text, self.unVehicule)
-                        self.uneTraverse.ajouterClient(self.unClient)
-                        listWidget1.addItem(self.unClient.nom)
-                        listWidget2.addItem(self.unClient.nom)
-                        self.uneTraverse.ajouterVehicule(self.unVehicule)
-                        listWidget3.addItem(self.unVehicule.noIdentification)
-                    else:
-                        self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
-                                               client.find('adresse').text, client.find('ville').text,
-                                               client.find('province').text, client.find('codePostal').text,
-                                               client.find('telephone').text, client.find('courriel').text,
-                                               client.find('sexe').text, client.find('dateNaissance').text, [])
-                        self.uneTraverse.ajouterClient(self.unClient)
-                        listWidget1.addItem(self.unClient.nom)
-                        listWidget2.addItem(self.unClient.nom)
+                        if vehicule.find("numIdentification") is not None and vehicule.find("marque") is not None and vehicule.find("modele") is not None and vehicule.find("annee") is not None and vehicule.find("couleur") is not None and vehicule.find("immatriculation") is not None and vehicule.find("type") is not None:
+                            self.unVehicule = Vehicule(vehicule.find('numIdentification').text,
+                                                       vehicule.find('marque').text,
+                                                       vehicule.find('modele').text,
+                                                       vehicule.find('annee').text,
+                                                       vehicule.find('couleur').text,
+                                                       vehicule.find('immatriculation').text,
+                                                       vehicule.find('type').text)
+                            self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
+                                                   client.find('adresse').text, client.find('ville').text,
+                                                   client.find('province').text, client.find('codePostal').text,
+                                                   client.find('telephone').text, client.find('courriel').text,
+                                                   client.find('sexe').text, client.find('dateNaissance').text, self.unVehicule)
+                            self.uneTraverse.ajouterClient(self.unClient)
+                            listWidget1.addItem(self.unClient.nom)
+                            listWidget2.addItem(self.unClient.nom)
+                            self.uneTraverse.ajouterVehicule(self.unVehicule)
+                            listWidget3.addItem(self.unVehicule.noIdentification)
+                        else:
+                            self.unClient = Client(client.find('numIdentification').text, client.find('nom').text,
+                                                   client.find('adresse').text, client.find('ville').text,
+                                                   client.find('province').text, client.find('codePostal').text,
+                                                   client.find('telephone').text, client.find('courriel').text,
+                                                   client.find('sexe').text, client.find('dateNaissance').text, [])
+                            self.uneTraverse.ajouterClient(self.unClient)
+                            listWidget1.addItem(self.unClient.nom)
+                            listWidget2.addItem(self.unClient.nom)
 
-            if root.find("listeType") is not None:
-                listeType = root.find("listeType")
-                for type in listeType.findall("type"):
-                    self.unType = Type(type.find("nomType").text, type.find("nombreRoues").text, type.find("tarif").text)
-                    self.typeVehicule.addItem(type.find("nomType").text)
+            listType = []
+            unTypeVoiture = Type("Voiture", 4, 25)
+            unTypeCamion = Type("Camion", 2, 50)
+            unTypeMoto = Type("Moto", 2, 15)
+            listType.append(unTypeVoiture)
+            listType.append(unTypeCamion)
+            listType.append(unTypeMoto)
+
+            for type in listType:
+                self.typeVehicule.addItem(type.nom)
 
             self.numTraverse.setText(self.uneTraverse.noTraverse)
             self.dateTraverse.setDate(date(int(self.uneTraverse.dateHeure[0:4]), int(self.uneTraverse.dateHeure[5:7]),
@@ -131,6 +138,62 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
         self.btnAjouterClient.clicked.connect(self.addClient)
         self.btnAjouterTraverse.clicked.connect(self.addTraverse)
         self.btnSupprimerEmployer.clicked.connect(self.deleteEmployee)
+        self.calculerMontantTraverse.clicked.connect(self.calculerMontant)
+        self.listVehiculeTraverse.itemClicked.connect(self.afficherVehicule)
+        self.listeEmploye.itemClicked.connect(self.afficherEmploye)
+
+        self.btnSupprimerEmployer.clicked.connect(self.deleteEmployee)
+        self.btnSupprimerClient.clicked.connect(self.deleteClient)
+
+
+
+    def afficherVehicule(self):
+        for client in self.uneTraverse.listeClient:
+            if client.vehicule.noIdentification == self.listVehiculeTraverse.currentItem().text():
+                self.clientVehicule.setText(client.nom)
+                self.typeVehiculeTraverse.setText(client.vehicule.typeDeVehicule)
+                self.numIdentificationVehiculeTraverse.setText(client.vehicule.noIdentification)
+                for type in listType:
+                    if type.nom == client.vehicule.typeDeVehicule:
+                        self.prixVehiculeTraverse.setText(str(type.prixTraverse))
+
+
+    def afficherEmploye(self):
+        for employe in self.unTraversier.listeEmploye:
+            if employe.nom == self.listeEmploye.currentItem().text():
+                self.numEmploye.setText(employe.noIdentification)
+                self.nomEmploye.setText(employe.nom)
+                self.dateEmbaucheEmploye.setText(employe.dateEmbauche)
+                self.dateArretEmploye.setText(employe.dateArret)
+                self.telephoneEmploye.setText(employe.telephone)
+                self.courrielEmploye.setText(employe.courriel)
+                self.adresseEmploye.setText(employe.adresse)
+                self.villeEmploye.setText(employe.ville)
+                self.provinceEmploye.setText(employe.province)
+                self.codePostalEmploye.setText(employe.codePostal)
+
+    def calculerMontant(self):
+        self.montant = 0
+        for client in self.uneTraverse.listeClient:
+            if client.vehicule is not None:
+                if client.vehicule.typeDeVehicule == "Voiture":
+                    self.montant += 25
+                elif client.vehicule.typeDeVehicule == "Camion":
+                    self.montant += 50
+                elif client.vehicule.typeDeVehicule == "Moto":
+                    self.montant += 15
+                elif client.vehicule.typeDeVehicule is None:
+                    self.montant += 0
+
+
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("Le montant total de la traverse est de " + str(self.montant) + "$")
+        msg.setWindowTitle("Montant")
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.exec_()
+
+
 
 
     def addTraversier(self):
@@ -153,6 +216,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
         listWidget2 = self.listEmployeTraversier
         listWidget2.addItem(self.unEmploye.nom)
         self.employeInscptionTraverse.addItem(self.unEmploye.nom)
+
+    def deleteClient(self):
+        listWidget1 = self.listClients
+        listWidget2 = self.listClientTraverse
+        listWidget1.takeItem(listWidget1.currentRow())
+        listWidget2.takeItem(listWidget2.currentRow())
+        self.uneTraverse.supprimerClient(self.unClient)
 
     def deleteEmployee(self):
         listWidget1 = self.listeEmploye
@@ -181,6 +251,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             listWidget4.addItem(self.unClient.nom)
             listWidget5 = self.listVehiculeTraverse
             listWidget5.addItem(self.unVehicule.immatriculation)
+
 
         elif self.vehiculeNon.isChecked():
             self.unClient = Client(self.numClient.text(), self.nomClient.text(), self.adresseClient.text(),
@@ -279,9 +350,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
                 immatriculation = ET.SubElement(vehicule, "immatriculation")
                 immatriculation.text = c.vehicule.immatriculation
                 type = ET.SubElement(vehicule, "type")
-                type.text = c.vehicule.type
+                type.text = c.vehicule.typeDeVehicule
             except AttributeError:
                 pass
+
         listeEmploye = ET.SubElement(subElement, "listeEmploye")
         for e in self.unTraversier.listeEmploye:
             employe = ET.SubElement(listeEmploye, "employe")
@@ -309,8 +381,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             courriel.text = e.courriel
 
 
+
+
         ET.indent(root, space="    ")
-        tree.write("traversier.xml")
+
+        tree.write("traversier.xml", xml_declaration=True, encoding="utf-8")
 
 
 if __name__ == "__main__":

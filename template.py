@@ -225,6 +225,9 @@ class Ui_Form(object):
         self.employeInscptionTraverse = QtWidgets.QComboBox(self.tab_3)
         self.employeInscptionTraverse.setGeometry(QtCore.QRect(30, 200, 221, 22))
         self.employeInscptionTraverse.setObjectName("employeInscptionTraverse")
+        self.calculerMontantTraverse = QtWidgets.QPushButton(self.tab_3)
+        self.calculerMontantTraverse.setGeometry(QtCore.QRect(30, 320, 121, 51))
+        self.calculerMontantTraverse.setObjectName("calculerMontantTraverse")
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
@@ -419,6 +422,8 @@ class Ui_Form(object):
         self.label_25.setText(_translate("Form", "Numéro d\'identification : "))
         self.label_26.setText(_translate("Form", "Type de véhicule : "))
         self.label_27.setText(_translate("Form", "Prix de la traverse : "))
+        self.calculerMontantTraverse.setText(_translate("Form", "Calculer le montant \n"
+"de la traverse"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Traverse"))
         self.label_28.setText(_translate("Form", "Liste des clients"))
         self.label_61.setText(_translate("Form", "Code Postal"))

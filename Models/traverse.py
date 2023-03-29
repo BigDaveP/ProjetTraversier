@@ -9,7 +9,7 @@ class Traverse:
             self.listeClient = listeClient
 
         def __str__(self):
-            return "Traverse [noTraverse=" + self.noTraverse + ", dateHeure=" + self.dateHeure + ", villeDepart=" + self.villeDepart + ", employeInscription=" + self.employeInscription + ", listeVehecule=" + self.listeVehecule + ", listeClient=" + self.listeClient + "]"
+            return "Traverse [noTraverse=" + self.noTraverse + ", dateHeure=" + self.dateHeure + ", villeDepart=" + self.villeDepart + ", employeInscription=" + self.employeInscription + ", listeVehecule=" + self.listeVehicule + ", listeClient=" + self.listeClient + "]"
 
         def getHashCode(self):
             return self.noTraverse
@@ -17,6 +17,11 @@ class Traverse:
         def Equals(self, other):
             return self.noTraverse == other.noTraverse
 
+        def trouverClient(self, numeroIdentification):
+            for client in self.listeClient:
+                if client.numeroIdentification == numeroIdentification:
+                    return client
+            return None
 
         def calculerRevenueTraverse(self):
             revenue = 0
